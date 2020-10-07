@@ -1,13 +1,13 @@
-FROM node:latest
-LABEL nkem="nkemakkolamnnadi3@gmai;l.com"
-ENV NODE_ENV=production
-ENV PORT=3000
-COPY . /var/www
-WORKDIR /var/www
-#VOLUME ["/var/www"]
-RUN npm install
-EXPOSE $PORT
-ENTRYPOINT ["npm","start"]
+FROM python:3
+
+WORKDIR /usr/src/app
+
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+CMD [ "python", "./your-daemon-or-script.py" ]
 
 # to build a dockerfile into a image manually use the following command
 
